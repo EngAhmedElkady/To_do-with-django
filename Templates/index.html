@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>TO DO</title>
+</head>
+<body>
+    <section class='todo'>
+        <div class="container">
+            <form method='POST'>
+                {% csrf_token %}
+                <h1>TO DO APP</h1>
+                <div>
+                    <input type="text " class='title' name='title' placeholder="{{post.title}}" >
+                    <input type="submit" class='add' value="add">
+                </div>
+                
+            </form>
+            
+            {% for post in all  %}
+            <div class='apps'>
+
+                <div class='text'>
+                    <h1>{{post.title}}</h1>
+                </div>
+                <div class='butn'>
+                    <a href="{% url 'delete' post.id %}">delete</a>
+                    <a href="{% url 'update' post.id %}">update</a>
+
+                </div>                
+
+        </div>
+            {% endfor %}
+                
+            
+            
+        </div>
+
+    </section>
+</body>
+</html>
